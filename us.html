@@ -4,36 +4,72 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculateur de temps et de distance</title>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <style>
   body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: #f8f9fa;
   }
-  #calculator {
-    text-align: center;
+  .container {
     margin-top: 50px;
+  }
+  .card {
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .card-body {
+    background-color: #fff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 </style>
 </head>
 <body>
 
-<div id="calculator">
-  <h1>Calculateur de temps et de distance</h1>
-  <label for="dateA">Date A:</label>
-  <input type="date" id="dateA"><br><br>
-  <label for="dateB">Date B:</label>
-  <input type="date" id="dateB"><br><br>
-  <label for="distanceAB">Distance entre les points A et B (en km):</label>
-  <input type="number" value="7648" id="distanceAB"><br><br>
-  <button onclick="calculate()">Calculer</button><br><br>
-  <hr>
-  <div id="result"></div>
-  <div id="resultrst"></div>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="text-center">Calculateur de temps et de distance</h1>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="dateA">Date A:</label>
+            <input type="date" class="form-control" id="dateA">
+          </div>
+          <div class="form-group">
+            <label for="dateB">Date B:</label>
+            <input type="date" class="form-control" id="dateB">
+          </div>
+          <div class="form-group">
+            <label for="distanceAB">Distance entre les points A et B (en km):</label>
+            <input type="number" class="form-control" value="7648" id="distanceAB">
+          </div>
+          <button class="btn btn-primary btn-block" onclick="calculate()">Calculer</button>
+        </div>
+        <div class="col-md-6">
+          <div id="result"></div>
+          <div id="resultrst"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
-    
 function calculate() {
   var dateA = new Date(document.getElementById('dateA').value);
   var dateB = new Date(document.getElementById('dateB').value);
@@ -46,13 +82,11 @@ function calculate() {
   var timeDifferenceA = new Date().getTime() - dateA.getTime();
   var daysDifferenceA = Math.ceil(timeDifferenceA / (1000 * 3600 * 24));
 
-  document.getElementById('result').innerHTML = "Nombre de jours restants : " + (daysDifference-daysDifferenceA) + "<br>" +
-                                                  "Distance moyenne parcourue par jour : " + remainingDistance + " km"+ "<br>";
+  document.getElementById('result').innerHTML = "<p>Nombre de jours restants : <strong>" + (daysDifference-daysDifferenceA).toFixed(2) + "</strong></p>" +
+                                                  "<p>Distance moyenne parcourue par jour : <strong>" + remainingDistance.toFixed(2) + "</strong> km</p>";
 
- document.getElementById('resultrst').innerHTML = "Nombre de Kms restants : " + (remainingDistance * (daysDifference-daysDifferenceA)) + "<br>";
-
+ document.getElementById('resultrst').innerHTML = "<p>Nombre de Kms restants : <strong>" + (remainingDistance * (daysDifference-daysDifferenceA)).toFixed(2) + "</strong></p>";
 }
-//document.getElementById('dateA').valueAsDate = new Date();
 document.getElementById('dateB').value = '2024-07-01';
 document.getElementById('dateA').value = '2024-01-28';
 calculate();
