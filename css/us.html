@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de temps et de distance</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  #calculator {
+    text-align: center;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+
+<div id="calculator">
+  <h1>Calculateur de temps et de distance</h1>
+  <label for="dateA">Date A:</label>
+  <input type="date" id="dateA"><br><br>
+  <label for="dateB">Date B:</label>
+  <input type="date" id="dateB"><br><br>
+  <label for="distanceAB">Distance entre les points A et B (en km):</label>
+  <input type="number" value="7648" id="distanceAB"><br><br>
+  <button onclick="calculate()">Calculer</button><br><br>
+  <hr>
+  <div id="result"></div>
+  <div id="resultrst"></div>
+</div>
+
+<script>
+    
+function calculate() {
+  var dateA = new Date(document.getElementById('dateA').value);
+  var dateB = new Date(document.getElementById('dateB').value);
+  var distanceAB = parseFloat(document.getElementById('distanceAB').value);
+  
+  var timeDifference = dateB.getTime() - dateA.getTime();
+  var daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  var remainingDistance = distanceAB / daysDifference;
+  
+  var timeDifferenceA = new Date().getTime() - dateA.getTime();
+  var daysDifferenceA = Math.ceil(timeDifferenceA / (1000 * 3600 * 24));
+
+  document.getElementById('result').innerHTML = "Nombre de jours restants : " + (daysDifference-daysDifferenceA) + "<br>" +
+                                                  "Distance moyenne parcourue par jour : " + remainingDistance + " km"+ "<br>";
+
+ document.getElementById('resultrst').innerHTML = "Nombre de Kms restants : " + (remainingDistance * (daysDifference-daysDifferenceA)) + "<br>";
+
+}
+//document.getElementById('dateA').valueAsDate = new Date();
+document.getElementById('dateB').value = '2024-07-01';
+document.getElementById('dateA').value = '2024-01-28';
+calculate();
+</script>
+
+</body>
+</html>
