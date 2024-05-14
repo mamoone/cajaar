@@ -105,12 +105,11 @@
   // Get the value of the input element
   var value2 = inputElement2.value;
 
-  if(value !== value2 && value != null || value != undefined ){
+  if(value == value2 || value == null || value == undefined){
     alert("Passwords do NOT match")
   }else{
     this.sendPostRequestWithXHR();
   }
-
 
 }
     
