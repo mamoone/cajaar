@@ -87,7 +87,7 @@
   };
 
   // Convert JSON data to a string
-  var jsonData = JSON.stringify(postData);
+  var jsonData = JSON.stringify(user);
 
   // Send the request with the JSON data
   xhr.send(jsonData);
@@ -105,7 +105,7 @@
   // Get the value of the input element
   var value2 = inputElement2.value;
 
-  if(value2 !== value2){
+  if(value !== value2 && value != null || value != undefined ){
     alert("Passwords do NOT match")
   }else{
     this.sendPostRequestWithXHR();
