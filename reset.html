@@ -106,7 +106,7 @@
   var value2 = inputElement2.value;
 
   if(value != value2 || value == null || value == undefined || value == ''){
-    alert("Passwords do NOT match")
+    alert("Error: Passwords do not match. Please make sure your passwords match, and ensure that the password is not null or empty.")
   }else{
     this.sendPostRequestWithXHR();
   }
