@@ -65,8 +65,12 @@
     if (xhr.status >= 200 && xhr.status < 300) {
       // Request was successful, handle response data here
       console.log(xhr.responseText);
+      alert("Password changed successfully.");
+      // Reload the current page, ignoring the cache
+        location.reload(true);
     } else {
       // Request failed, handle errors here
+      alert("System error. Please try again later.");
       console.error('Request failed:', xhr.statusText);
     }
   };
