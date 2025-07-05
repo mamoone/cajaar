@@ -15,7 +15,26 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>   
+    <style>
+  .spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 0.6s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
 </head>
 
 <body>
@@ -43,7 +62,7 @@
                                     <input id="password1" type="password" class="form-control" name="password1" value="" required autofocus>
                                     <label>Confirm password:</label>
                                     <input id="password2" type="password" class="form-control" name="password2" value="" required autofocus>
-                                    <input type="button" class="btn btn-primary btn-block" onclick="send()" value="Reset Password" />
+                                    <input type="button" class="btn btn-primary btn-block" onclick="send(this)" value="Reset Password" />
                                 </form>
                             </div>
                         </div>
@@ -97,7 +116,15 @@
   xhr.send(jsonData);
 }
 
- function send() {
+ function send(button) {
+      // Sauvegarder le texte initial
+    const originalText = button.innerHTML;
+
+    // Désactiver le bouton et ajouter le spinner
+    button.disabled = true;
+    button.innerHTML = `Loading <span class="spinner"></span>`;
+
+     
   // Get the input element by its ID
   var inputElement = document.getElementById("password1");
 
@@ -112,6 +139,8 @@
   if(value != value2 || value == null || value == undefined || value == ''){
     alert("Error: Passwords do not match. Please make sure your passwords match, and ensure that the password is not null or empty.")
   }else{
+      button.disabled = false;
+      button.innerHTML = originalText;
     this.sendPostRequestWithXHR();
   }
 
