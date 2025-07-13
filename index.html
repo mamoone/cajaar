@@ -157,7 +157,8 @@
                 "3. People on-site can see and react",
                 "📍 Your message is only visible on-location. Hyperlocal. Powerful. Real."
               ],
-              contact: "Made with ❤️ by local dreamers"
+              contact: "Made with ❤️ by local dreamers",
+              policy: "Privacy Policy"
             },
             fr: {
               title: "Et si les murs de ta ville devenaient un média vivant ?",
@@ -177,7 +178,8 @@
                 "3. Les gens sur place peuvent la voir et interagir",
                 "📍 Ton message est uniquement visible sur place. Local, puissant, réel."
               ],
-              contact: "Fait avec ❤️ par des rêveurs locaux"
+              contact: "Fait avec ❤️ par des rêveurs locaux",
+              policy: "Politique de confidentialité"
             }
           };
           const t = translations[lang];
@@ -195,7 +197,8 @@
           stepEls.forEach((p, i) => {
             p.innerText = t.steps[i];
           });
-          document.querySelector('footer p:last-child').innerText = t.contact;
+          document.querySelector('footer p:last-child').innerHTML = `<a href="/Cajaar-App-Policy.html">${t.policy}</a>`;
+          document.querySelector('footer p:nth-child(2)').innerText = t.contact;
         }
     </script>
 </head>
@@ -255,10 +258,10 @@
     </div>
 </section>
 
-
 <footer>
     <p>💌 Contact: <a href="mailto:contact@cajaar.com">contact@cajaar.com</a></p>
     <p>Made with ❤️ by local dreamers</p>
+    <p><a href="/Cajaar-App-Policy.html">Privacy Policy</a></p>
 </footer>
 </body>
 </html>
