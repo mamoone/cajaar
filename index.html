@@ -1,55 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cajaar - Light up your city</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
           box-sizing: border-box;
           margin: 0;
           padding: 0;
         }
+
         body {
           font-family: 'Inter', sans-serif;
           background: #0e0e1a;
           color: #ffffff;
           line-height: 1.6;
+          overflow-x: hidden;
         }
+@media (max-width: 600px) {
+  header {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 0.95rem;
+    padding: 12px 24px;
+  }
+
+  /* CORRECTION : Taille beaucoup plus grande pour les images sur mobile */
+  .store-links img {
+    height: 70px; /* Augmenté à 70px pour une bien meilleure visibilité */
+    width: auto; /* S'assure que les proportions sont maintenues */
+  }
+
+  /* Meilleur espacement pour mobile */
+  .store-links {
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Media query supplémentaire pour les très petits écrans */
+@media (max-width: 400px) {
+  .store-links img {
+    height: 65px; /* Légèrement plus petit pour les très petits écrans */
+  }
+
+  .store-links {
+    gap: 1rem;
+  }
+}
         header {
-          height: 100vh;
-          background: linear-gradient(rgba(14,14,26,0.75), rgba(14,14,26,0.75)), url('images/default.jpg') center/cover no-repeat;
+          min-height: 100vh;
+          background: linear-gradient(rgba(14,14,26,0.75), rgba(14,14,26,0.75)), url('images/default.jpg') center center / cover no-repeat;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           text-align: center;
-          padding: 0 20px;
+          padding: 40px 20px;
           position: relative;
-          overflow: hidden;
-          animation: pulseBackground 20s ease-in-out infinite;
         }
+
         @keyframes pulseBackground {
           0% { background-size: 100%; }
           50% { background-size: 110%; }
           100% { background-size: 100%; }
         }
-        header h1, header p, .cta-button, .store-links {
-          z-index: 1;
-        }
+
         header h1 {
           font-size: 3rem;
+          max-width: 90%;
           color: #ffffff;
+          font-family: 'Orbitron', sans-serif;
         }
+
         header p {
           font-size: 1.2rem;
-          margin-top: 20px;
-          max-width: 600px;
+          margin-top: 1rem;
+          max-width: 700px;
+          color: #dcdcdc;
         }
+
         .cta-button {
-          margin-top: 20px;
-          background: #fff;
+          margin-top: 2rem;
+          background: #ffffff;
           color: #111;
           padding: 14px 28px;
           font-weight: bold;
@@ -57,72 +111,102 @@
           text-decoration: none;
           font-size: 1rem;
           transition: all 0.3s ease;
-          display: inline-block;
         }
+
         .cta-button:hover {
-          background: #ffecf7;
+          background: #ff4d9e;
+          color: white;
         }
+
         .store-links {
-          margin-top: 20px;
+          display: flex;
+          justify-content: center;
+          margin-top: 1.5rem;
+          gap: 1rem;
+          flex-wrap: wrap;
         }
+
         .store-links img {
-          height: 60px;
-          margin: 0 10px;
+          height: 50px;
+          transition: transform 0.2s;
         }
+
+        .store-links img:hover {
+          transform: scale(1.05);
+        }
+
+        .lang-switcher {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+        }
+
+        .lang-switcher a {
+          margin-left: 10px;
+          color: #fff;
+          text-decoration: underline;
+          font-weight: 500;
+          cursor: pointer;
+        }
+
         section {
           padding: 80px 20px;
-          max-width: 1000px;
+          max-width: 1100px;
           margin: auto;
           text-align: center;
         }
+
         section h2 {
           font-size: 2.5rem;
+          margin-bottom: 2rem;
           color: #ff4d9e;
-          margin-bottom: 20px;
         }
+
         .features {
           display: grid;
           gap: 30px;
           margin-top: 40px;
         }
+
         .feature {
           background: #1a1a2e;
           padding: 30px;
           border-radius: 16px;
-          transition: transform 0.3s, background 0.3s;
+          transition: 0.3s;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
+
         .feature:hover {
-          transform: scale(1.05);
+          transform: translateY(-5px);
           background: #292944;
         }
+
         .feature h3 {
           color: #7ee787;
-          font-size: 1.3rem;
+          font-size: 1.4rem;
           margin-bottom: 10px;
         }
-        .feature p {
-          font-size: 1rem;
-        }
+
         .how-it-works {
+          display: grid;
+          gap: 20px;
           margin-top: 40px;
-          font-size: 1.1rem;
         }
+
+        .how-it-works > div {
+          background: #1a1a2e;
+          display: flex;
+          align-items: flex-start;
+          gap: 20px;
+          padding: 20px;
+          border-radius: 12px;
+        }
+
         .highlight {
           color: #00f0ff;
           font-weight: bold;
         }
-        .lang-switcher {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          z-index: 2;
-        }
-        .lang-switcher a {
-          margin-left: 10px;
-          color: #fff;
-          text-decoration: underline;
-          cursor: pointer;
-        }
+
         footer {
           background: #111;
           padding: 30px 20px;
@@ -130,12 +214,51 @@
           font-size: 0.9rem;
           color: #aaa;
         }
+
         footer a {
-          color: #fff;
+          color: #ffffff;
           text-decoration: none;
           margin: 0 5px;
         }
+
+        @media (max-width: 600px) {
+          header {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            background-position: center center;
+            background-size: cover;
+          }
+
+          header h1 {
+            font-size: 1.8rem;
+          }
+
+          header p {
+            font-size: 1rem;
+          }
+
+          .cta-button {
+            font-size: 0.95rem;
+            padding: 12px 24px;
+          }
+
+          /* CORRECTION : Augmentation de la taille des images sur mobile */
+          .store-links img {
+            height: 55px; /* Augmenté de 45px à 55px pour une meilleure visibilité */
+          }
+
+          /* Ajout d'un espacement vertical pour les liens de store sur mobile */
+          .store-links {
+            gap: 1.5rem;
+            margin-top: 2rem;
+          }
+
+          section h2 {
+            font-size: 2rem;
+          }
+        }
     </style>
+
     <script>
         function switchLang(lang) {
           const translations = {
@@ -146,8 +269,8 @@
               why: "Why Cajaar?",
               how: "How does it work?",
               features: [
-                ["🌍 Reconnect reality", "We’re connected online, but disconnected IRL. Cajaar brings us back together locally."],
-                ["📌 Activate spaces", "Choose a real-world spot, post a message, and it’s visible only to people present there."],
+                ["🌍 Reconnect reality", "We're connected online, but disconnected IRL. Cajaar brings us back together locally."],
+                ["📌 Activate spaces", "Choose a real-world spot, post a message, and it's visible only to people present there."],
                 ["🔥 Amplify your voice", "Have something to share? Cajaar gives you a public stage — at your local level."],
                 ["🚀 Out of the box", "Not just an app. Cajaar is a geo-powered, community-driven media experience."]
               ],
@@ -182,21 +305,25 @@
               policy: "Politique de confidentialité"
             }
           };
+
           const t = translations[lang];
           document.querySelector('header h1').innerText = t.title;
           document.querySelector('header p').innerText = t.desc;
           document.querySelector('.cta-button').innerText = t.cta;
           document.querySelectorAll('section h2')[0].innerText = t.why;
           document.querySelectorAll('section h2')[1].innerText = t.how;
+
           const featureEls = document.querySelectorAll('.feature');
           t.features.forEach(([title, desc], i) => {
             featureEls[i].querySelector('h3').innerText = title;
             featureEls[i].querySelector('p').innerText = desc;
           });
+
           const stepEls = document.querySelectorAll('.how-it-works p');
           stepEls.forEach((p, i) => {
             p.innerText = t.steps[i];
           });
+
           document.querySelector('footer p:last-child').innerHTML = `<a href="/Cajaar-App-Policy.html">${t.policy}</a>`;
           document.querySelector('footer p:nth-child(2)').innerText = t.contact;
         }
@@ -221,11 +348,11 @@
     <div class="features">
         <div class="feature">
             <h3>🌍 Reconnect reality</h3>
-            <p>We’re connected online, but disconnected IRL. Cajaar brings us back together locally.</p>
+            <p>We're connected online, but disconnected IRL. Cajaar brings us back together locally.</p>
         </div>
         <div class="feature">
             <h3>📌 Activate spaces</h3>
-            <p>Choose a real-world spot, post a message, and it’s visible only to people present there.</p>
+            <p>Choose a real-world spot, post a message, and it's visible only to people present there.</p>
         </div>
         <div class="feature">
             <h3>🔥 Amplify your voice</h3>
@@ -237,23 +364,24 @@
         </div>
     </div>
 </section>
+
 <section>
-    <h2 data-key="how">How does it work?</h2>
-    <div class="how-it-works" style="display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px;">
-        <div style="display: flex; align-items: flex-start; gap: 20px; background: #1a1a2e; padding: 20px; border-radius: 12px;">
+    <h2>How does it work?</h2>
+    <div class="how-it-works">
+        <div>
             <div style="font-size: 2rem;">📍</div>
-            <p style="margin: 0; margin-top: 1vh;"><span class="highlight">1.</span> <span data-key="step1">Pick a real-world location</span></p>
+            <p style="margin-top: 1.5vh;"><span class="highlight">1.</span> Pick a real-world location</p>
         </div>
-        <div style="display: flex; align-items: flex-start; gap: 20px; background: #1a1a2e; padding: 20px; border-radius: 12px;">
+        <div>
             <div style="font-size: 2rem;">📝</div>
-            <p style="margin: 0; margin-top: 1vh;"><span class="highlight">2.</span> <span data-key="step2">Create your post (text, image,...)</span></p>
+            <p style="margin-top: 1.5vh;"><span class="highlight">2.</span> Create your post (text, image,...)</p>
         </div>
-        <div style="display: flex; align-items: flex-start; gap: 20px; background: #1a1a2e; padding: 20px; border-radius: 12px;">
+        <div>
             <div style="font-size: 2rem;">👥</div>
-            <p style="margin: 0; margin-top: 1vh;"><span class="highlight">3.</span> <span data-key="step3">People on-site can see and react</span></p>
+            <p style="margin-top: 1.5vh;"><span class="highlight">3.</span> People on-site can see and react</p>
         </div>
         <div style="text-align: center; font-style: italic; color: #00f0ff;">
-            <p style="margin-top: 20px;" data-key="step4">📍 Your message is <strong>only</strong> visible on-location. Hyperlocal. Powerful. Real.</p>
+            <p>📍 Your message is <strong>only</strong> visible on-location. Hyperlocal. Powerful. Real.</p>
         </div>
     </div>
 </section>
